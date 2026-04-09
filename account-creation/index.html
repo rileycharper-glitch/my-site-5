@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Creation — COSPA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --navy: #10287E; --blue: #1563B7; --bright: #1798DE; --cream: #F5F3EF; --sand: #E7DFD1; --tan: #D9CAB3; --olive: #2B3210; --white: #FFFFFF; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Nunito', sans-serif; color: var(--olive); background: var(--cream); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 72px; box-shadow: 0 2px 8px rgba(16,40,126,0.15); }
+.header-logo { height: 48px; }
+.header-nav { display: flex; align-items: center; gap: 1.5rem; }
+.header-nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
+.header-nav a:hover { color: #fff; }
+.btn-find-pool { display: inline-block; background: var(--bright); color: #fff; padding: 0.6rem 1.4rem; border-radius: 6px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+.btn-find-pool:hover { background: #1285c7; transform: translateY(-1px); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; }
+@media (max-width: 768px) { .header-nav { display: none; } .header-nav.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2rem; gap: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); } .nav-toggle { display: block; } }
+
+/* HERO */
+.page-hero { background: var(--navy); padding: 3rem 2rem; text-align: center; }
+.page-hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--white); margin-bottom: 0.5rem; }
+.page-hero p { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+/* STEPS */
+.steps-section { max-width: 800px; margin: 0 auto; padding: 3.5rem 2rem; }
+.step { display: flex; gap: 1.5rem; margin-bottom: 2rem; align-items: flex-start; }
+@media (max-width: 560px) { .step { flex-direction: column; gap: 0.75rem; } }
+.step-number { flex-shrink: 0; width: 56px; height: 56px; background: var(--bright); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; }
+.step-content { flex: 1; }
+.step-content h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 0.35rem; }
+.step-content p { font-size: 1rem; line-height: 1.7; }
+.step-image { margin-top: 1rem; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 12px rgba(43,50,16,0.1); }
+.step-image img { width: 100%; display: block; }
+
+/* CALLOUT */
+.callout { background: var(--sand); border-radius: 12px; padding: 2rem; margin: 2rem 0; border-left: 4px solid var(--bright); }
+.callout h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 0.5rem; }
+.callout p { font-size: 0.95rem; line-height: 1.7; }
+
+/* HELP */
+.help-section { text-align: center; padding: 2.5rem 2rem; background: var(--sand); }
+.help-section p { font-size: 1.05rem; color: var(--olive); margin-bottom: 1rem; }
+.help-section a { display: inline-block; background: var(--navy); color: #fff; padding: 0.7rem 1.6rem; border-radius: 6px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+.help-section a:hover { background: #0d1f63; }
+
+/* FOOTER */
+.site-footer { background: var(--navy); color: rgba(255,255,255,0.8); padding: 3rem 2rem 2rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+@media (max-width: 768px) { .footer-inner { grid-template-columns: 1fr; text-align: center; } }
+.footer-brand img { height: 48px; margin-bottom: 1rem; }
+.footer-brand p { font-size: 0.85rem; line-height: 1.7; }
+.footer-links h4, .footer-contact h4 { color: #fff; font-size: 0.95rem; margin-bottom: 0.75rem; font-weight: 700; }
+.footer-links a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; padding: 0.2rem 0; transition: color 0.2s; }
+.footer-links a:hover { color: #fff; }
+.footer-contact p { font-size: 0.88rem; line-height: 1.7; }
+.footer-contact a { color: var(--bright); text-decoration: none; }
+.footer-contact a:hover { text-decoration: underline; }
+.footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.12); text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/"><img src="https://static.wixstatic.com/media/4dd6ee_87f447beca59483fb718f926fc4b90e2~mv2.png" alt="COSPA" class="header-logo"></a>
+  <button class="nav-toggle" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
+  <nav class="header-nav">
+    <a href="/">Home</a>
+    <a href="/our-pools">Our Pools</a>
+    <a href="/about">About</a>
+    <a href="/faq">FAQ</a>
+    <a href="/contact">Contact</a>
+    <a href="/" class="btn-find-pool">Find Your Pool</a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <h1>Create Your Amilia Account</h1>
+  <p>Set up your account before April 14 so you're ready to register the moment programs go live.</p>
+</section>
+
+<section class="steps-section">
+
+  <div class="step">
+    <div class="step-number">1</div>
+    <div class="step-content">
+      <h3>Visit your pool's Amilia store</h3>
+      <p>Choose your neighbourhood pool from the <a href="/our-pools" style="color:var(--blue);">Our Pools</a> page and click the Register Now link to go to that pool's Amilia store.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">2</div>
+    <div class="step-content">
+      <h3>Create an Amilia account</h3>
+      <p>Click "Sign Up" or "Create Account" to start your registration. You'll need a valid email address.</p>
+      <div class="step-image">
+        <img src="https://static.wixstatic.com/media/1aea8f_d3926c4a3d1d42d1aef273a213b5c179~mv2.png" alt="Amilia account creation screen" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">3</div>
+    <div class="step-content">
+      <h3>Enter your information</h3>
+      <p>Fill in your name, contact details, and address. This is the primary account holder information.</p>
+      <div class="step-image">
+        <img src="https://static.wixstatic.com/media/1aea8f_40ba997aa50b42ab9a706ecb901b1829~mv2.png" alt="Amilia registration form" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">4</div>
+    <div class="step-content">
+      <h3>Add family members</h3>
+      <p>Add each family member who will be participating in programs. Include their name and date of birth so they can be placed in the correct lesson level.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">5</div>
+    <div class="step-content">
+      <h3>Browse available programs</h3>
+      <p>Activities become viewable on <strong>April 11, 2026</strong>. Browse swim lessons, public swim, lane swim, Aquafit, and more.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">6</div>
+    <div class="step-content">
+      <h3>Add programs to your cart</h3>
+      <p>Select the programs and time slots that work for your family. Registration opens to the public on <strong>April 14, 2026 at 9:00 AM</strong>.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">7</div>
+    <div class="step-content">
+      <h3>Complete payment</h3>
+      <p>Review your cart and complete payment. You'll receive a confirmation email with your registration details.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h3>Your account works at every COSPA pool</h3>
+    <p>Your Amilia account transfers between pools — no need to create a new account for each location. Set it up once and register at any of our 8 pools.</p>
+  </div>
+
+</section>
+
+<section class="help-section">
+  <p>Need help with your account? We're happy to assist.</p>
+  <a href="mailto:info@cospa.ca?subject=Account Help">Email info@cospa.ca</a>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://static.wixstatic.com/media/4dd6ee_87f447beca59483fb718f926fc4b90e2~mv2.png" alt="COSPA">
+      <p>Calgary Outdoor Swimming Pools Association manages 8 outdoor pools across Calgary on behalf of the City of Calgary.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="/">Home</a><a href="/our-pools">Our Pools</a><a href="/about">About Us</a><a href="/faq">FAQ</a><a href="/admission-policies">Admission Policies</a><a href="/contact">Contact</a>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p><a href="mailto:info@cospa.ca">info@cospa.ca</a><br>403-207-5665<br>426-918 16 Avenue NW<br>Calgary, AB T2M 0K3</p>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Calgary Outdoor Swimming Pools Association</div>
+</footer>
+
+</body>
+</html>

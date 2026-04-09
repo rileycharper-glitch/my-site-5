@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Pools — COSPA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #10287E;
+  --blue: #1563B7;
+  --bright: #1798DE;
+  --cream: #F5F3EF;
+  --sand: #E7DFD1;
+  --tan: #D9CAB3;
+  --olive: #2B3210;
+  --white: #FFFFFF;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: var(--olive);
+  background: var(--cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- HEADER ---- */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--navy); padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between; height: 72px;
+  box-shadow: 0 2px 8px rgba(16,40,126,0.15);
+}
+.header-logo { height: 48px; }
+.header-nav { display: flex; align-items: center; gap: 1.5rem; }
+.header-nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
+.header-nav a:hover { color: #fff; }
+.header-nav a.active { color: #fff; border-bottom: 2px solid var(--bright); padding-bottom: 2px; }
+.btn-find-pool {
+  display: inline-block; background: var(--bright); color: #fff;
+  padding: 0.6rem 1.4rem; border-radius: 6px; font-weight: 700; font-size: 0.9rem;
+  text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s;
+}
+.btn-find-pool:hover { background: #1285c7; transform: translateY(-1px); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; }
+
+@media (max-width: 768px) {
+  .header-nav { display: none; }
+  .header-nav.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2rem; gap: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .nav-toggle { display: block; }
+  .header-cta-desktop { display: none; }
+}
+
+/* ---- PAGE HERO ---- */
+.page-hero {
+  background: var(--navy);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.page-hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.page-hero p {
+  color: rgba(255,255,255,0.8);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ---- FILTER BAR ---- */
+.filter-bar {
+  display: flex; justify-content: center; gap: 0.75rem;
+  padding: 1.5rem 2rem;
+  background: var(--sand);
+  border-bottom: 2px solid var(--tan);
+  flex-wrap: wrap;
+}
+.filter-btn {
+  padding: 0.5rem 1.25rem; border-radius: 20px;
+  border: 2px solid var(--navy); background: transparent;
+  color: var(--navy); font-weight: 700; font-size: 0.88rem;
+  cursor: pointer; transition: all 0.2s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--navy); color: var(--white);
+}
+
+/* ---- POOL DETAIL CARDS ---- */
+.pools-section {
+  padding: 3rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.pool-detail-card {
+  background: var(--white);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(43,50,16,0.08);
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  transition: box-shadow 0.2s;
+}
+.pool-detail-card:hover {
+  box-shadow: 0 6px 24px rgba(43,50,16,0.12);
+}
+@media (max-width: 768px) {
+  .pool-detail-card { grid-template-columns: 1fr; }
+}
+.pool-detail-card img {
+  width: 100%; height: 100%; min-height: 260px;
+  object-fit: cover; display: block;
+}
+@media (max-width: 768px) {
+  .pool-detail-card img { min-height: 200px; max-height: 240px; }
+}
+.pool-detail-body {
+  padding: 1.75rem;
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.pool-detail-body h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem; color: var(--navy); margin-bottom: 0.25rem;
+}
+.pool-meta { font-size: 0.9rem; color: var(--olive); line-height: 1.7; }
+.pool-meta strong { color: var(--navy); }
+.pool-meta a { color: var(--blue); text-decoration: none; }
+.pool-meta a:hover { text-decoration: underline; }
+.badge {
+  display: inline-block; padding: 0.25rem 0.75rem;
+  border-radius: 14px; font-size: 0.78rem; font-weight: 700;
+  margin-right: 0.4rem; margin-bottom: 0.3rem;
+}
+.badge-managed { background: #e8f0fe; color: var(--navy); }
+.badge-community { background: #e6f4ea; color: #1e6f38; }
+.badge-adaptive { background: #fef3e0; color: #b86e00; }
+.badge-extended { background: #f3e8fd; color: #6b21a8; }
+.pool-programs {
+  font-size: 0.88rem; color: var(--olive);
+  margin-top: 0.25rem; line-height: 1.6;
+}
+.pool-detail-cta {
+  margin-top: auto; padding-top: 0.75rem;
+}
+.btn-register {
+  display: inline-block; text-align: center;
+  background: var(--bright); color: #fff;
+  padding: 0.7rem 1.6rem; border-radius: 6px;
+  font-weight: 700; font-size: 0.95rem;
+  text-decoration: none; transition: background 0.2s, transform 0.15s;
+}
+.btn-register:hover { background: #1285c7; transform: translateY(-1px); }
+.btn-register.hidden { display: none; }
+
+/* ---- FOOTER ---- */
+.site-footer { background: var(--navy); color: rgba(255,255,255,0.8); padding: 3rem 2rem 2rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+@media (max-width: 768px) { .footer-inner { grid-template-columns: 1fr; text-align: center; } }
+.footer-brand img { height: 48px; margin-bottom: 1rem; }
+.footer-brand p { font-size: 0.85rem; line-height: 1.7; }
+.footer-links h4, .footer-contact h4 { color: #fff; font-size: 0.95rem; margin-bottom: 0.75rem; font-weight: 700; }
+.footer-links a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; padding: 0.2rem 0; transition: color 0.2s; }
+.footer-links a:hover { color: #fff; }
+.footer-contact p { font-size: 0.88rem; line-height: 1.7; }
+.footer-contact a { color: var(--bright); text-decoration: none; }
+.footer-contact a:hover { text-decoration: underline; }
+.footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.12); text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <a href="/">
+    <img src="https://static.wixstatic.com/media/4dd6ee_87f447beca59483fb718f926fc4b90e2~mv2.png" alt="COSPA" class="header-logo">
+  </a>
+  <button class="nav-toggle" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="header-nav">
+    <a href="/">Home</a>
+    <a href="/our-pools" class="active">Our Pools</a>
+    <a href="/about">About</a>
+    <a href="/faq">FAQ</a>
+    <a href="/contact">Contact</a>
+    <a href="/" class="btn-find-pool">Find Your Pool</a>
+  </nav>
+</header>
+
+<!-- ============ PAGE HERO ============ -->
+<section class="page-hero">
+  <h1>Our Pools</h1>
+  <p>8 outdoor pools across Calgary. Find yours by neighbourhood, opening date, or programs offered.</p>
+</section>
+
+<!-- ============ FILTER BAR ============ -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All Pools</button>
+  <button class="filter-btn" data-filter="june-8">Opens June 8</button>
+  <button class="filter-btn" data-filter="june-13">Opens June 13</button>
+  <button class="filter-btn" data-filter="extended">Extended Season</button>
+</div>
+
+<!-- ============ POOL DETAIL CARDS ============ -->
+<section class="pools-section">
+
+  <!-- Bowview -->
+  <article class="pool-detail-card" data-opens="june-8" data-extended="true">
+    <img src="https://static.wixstatic.com/media/1aea8f_e6d02c7486de4aae92f1f62bcd8eb10e~mv2.jpg" alt="Bowview Outdoor Pool" loading="lazy">
+    <div class="pool-detail-body">
+      <h2>Bowview Outdoor Pool</h2>
+      <div>
+                <span class="badge badge-extended">Extended Season</span>
+      </div>
+      <div class="pool-meta">
+        <strong>Address:</strong> 1910 6 Ave NW<br>
+        <strong>Phone:</strong> <a href="tel:4032213571">403-221-3571</a><br>
+        <strong>Email:</strong> <a href="mailto:bowview@cospa.ca">bowview@cospa.ca</a><br>
+        <strong>Season:</strong> June 8, 2026 – September 20, 2026<br>
+        <strong>Neighbourhoods:</strong> Bowness, Montgomery, Parkdale, West Hillhurst, Hillhurst-Sunnyside
+      </div>
+      <div class="pool-programs">
+        <strong>Programs:</strong> Swimming lessons (Lifesaving Society) · Public swim ($6/person) · Lane swim · Aquafit · Private rentals
+      </div>
+      <div class="pool-detail-cta">
+        <a href="https://app.amilia.com/store/en/bowviewoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Forest Lawn -->
+  <article class="pool-detail-card" data-opens="june-8" data-extended="false">
+    <img src="https://static.wixstatic.com/media/1aea8f_fffd6d673c294af8b7399d9a628dd4d1~mv2.jpg" alt="Forest Lawn Outdoor Pool" loading="lazy">
+    <div class="pool-detail-body">
+      <h2>Forest Lawn Outdoor Pool</h2>
+      <div>
+                <span class="badge badge-adaptive">Adaptive Aquatics</span>
+      </div>
+      <div class="pool-meta">
+        <strong>Address:</strong> 1706 39 Street SE<br>
+        <strong>Phone:</strong> <a href="tel:4032213595">403-221-3595</a><br>
+        <strong>Email:</strong> <a href="mailto:forestlawn@cospa.ca">forestlawn@cospa.ca</a><br>
+        <strong>Season:</strong> June 8, 2026 – September 1, 2026<br>
+        <strong>Neighbourhoods:</strong> Forest Lawn, Dover, Erin Woods, Penbrooke
+      </div>
+      <div class="pool-programs">
+        <strong>Programs:</strong> Swimming lessons (Lifesaving Society) · Public swim ($6/person) · Lane swim · Aquafit · Private rentals · Adaptive aquatics (Vecova partnership)
+      </div>
+      <div class="pool-detail-cta">
+        <a href="https://app.amilia.com/store/en/forestlawnoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Highwood -->
+  <article class="pool-detail-card" data-opens="june-8" data-extended="false">
+    <img src="https://static.wixstatic.com/media/1aea8f_7e6162953857411ca18736f868b8f52d~mv2.jpg" alt="Highwood Outdoor Pool" loading="lazy">
+    <div class="pool-detail-body">
+      <h2>Highwood Outdoor Pool</h2>
+      <div>
+              </div>
+      <div class="pool-meta">
+        <strong>Address:</strong> 25 Holmwood Avenue NW<br>
+        <strong>Phone:</strong> <a href="tel:4032213574">403-221-3574</a><br>
+        <strong>Email:</strong> <a href="mailto:highwood@cospa.ca">highwood@cospa.ca</a><br>
+        <strong>Season:</strong> June 8, 2026 – September 1, 2026<br>
+        <strong>Neighbourhoods:</strong> Highwood, Rosedale, Crescent Heights, Brentwood, Charleswood
+      </div>
+      <div class="pool-programs">
+        <strong>Programs:</strong> Swimming lessons (Lifesaving Society) · Public swim ($6/person) · Lane swim · Aquafit · Private rentals
+      </div>
+      <div class="pool-detail-cta">
+        <a href="https://app.amilia.com/store/en/highwoodoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Millican Ogden -->
+  <article class="pool-detail-card" data-opens="june-13" data-extended="false">
+    <img src="https://static.wixstatic.com/media/1aea8f_32b89de866f44b2bbe847c879cb42a23~mv2.jpg" alt="Millican Ogden Outdoor Pool" loading="lazy">
+    <div class="pool-detail-body">
+      <h2>Millican Ogden Outdoor Pool</h2>
+      <div>
+              </div>
+      <div class="pool-meta">
+        <strong>Address:</strong> 2094 69th Avenue SE<br>
+        <strong>Phone:</strong> <a href="tel:4032213599">403-221-3599</a><br>
+        <strong>Email:</strong> <a href="mailto:millicanogden@cospa.ca">millicanogden@cospa.ca</a><br>
+        <strong>Season:</strong> June 13, 2026 – September 1, 2026<br>
+        <strong>Neighbourhoods:</strong> Millican, Ogden, Lynnwood, Riverbend
+      </div>
+      <div class="pool-programs">
+        <strong>Programs:</strong> Swimming lessons (Lifesaving Society) · Public swim ($6/person) · Lane swim · Aquafit · Private rentals
+      </div>
+      <div class="pool-detail-cta">
+        <a href="https://app.amilia.com/store/en/millicanogdenoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Mount Pleasant -->
+  <article class="pool-detail-card" data-opens="june-13" data-extended="true">
+    <img src="https://static.wixstatic.com/media/1aea8f_ada175adb02342209f84130a9f74c556~mv2.jpg" alt="Mount Pleasant Outdoor Pool" loading="lazy">
+    <div class="pool-detail-body">
+      <h2>Mount Pleasant Outdoor Pool</h2>
+      <div>
+                <span class="badge badge-extended">Extended Season</span>
+      </div>
+      <div class="pool-meta">
+        <strong>Address:</strong> 2310 6 St. NW<br>
+        <strong>Phone:</strong> <a href="tel:4032214288">403-221-4288</a><br>
+        <strong>Email:</strong> <a href="mailto:mountpleasant@cospa.ca">mountpleasant@cospa.ca</a><br>
+        <strong>Season:</strong> June 13, 2026 – September 20, 2026<br>
+        <strong>Neighbourhoods:</strong> Mount Pleasant, Tuxedo Park, Crescent Heights
+      </div>
+      <div class="pool-programs">
+        <strong>Programs:</strong> Swimming lessons (Lifesaving Society) · Public swim ($6/person) · Lane swim · Aquafit · Private rentals
+      </div>
+      <div class="pool-detail-cta">
+        <a href="https://app.amilia.com/store/en/mountpleasantoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Silver Springs -->
+  <article class="pool-detail-card" data-opens="june-8" data-extended="false">
+    <img src="https://static.wixstatic.com/media/1aea8f_1e7349c545cf4ae18912a58d4f8f0f6e~mv2.webp" alt="Silver Springs Outdoor Pool" loading="lazy">
+    <div class="pool-detail-body">
+      <h2>Silver Springs Outdoor Pool</h2>
+      <div>
+              </div>
+      <div class="pool-meta">
+        <strong>Address:</strong> 5720 Silver Ridge Dr NW<br>
+        <strong>Phone:</strong> <a href="tel:4032213897">403-221-3897</a><br>
+        <strong>Email:</strong> <a href="mailto:silversprings@cospa.ca">silversprings@cospa.ca</a><br>
+        <strong>Season:</strong> June 8, 2026 – September 1, 2026<br>
+        <strong>Neighbourhoods:</strong> Silver Springs, Scenic Acres
+      </div>
+      <div class="pool-programs">
+        <strong>Programs:</strong> Swimming lessons (Lifesaving Society) · Public swim ($6/person) · Lane swim · Aquafit · Private rentals
+      </div>
+      <div class="pool-detail-cta">
+        <a href="https://app.amilia.com/store/en/silverspringsoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- South Calgary -->
+  <article class="pool-detail-card" data-opens="june-13" data-extended="true">
+    <img src="https://static.wixstatic.com/media/1aea8f_3247eaa8a7d44de78187d8e7f90bb327~mv2.jpeg" alt="South Calgary Outdoor Pool" loading="lazy">
+    <div class="pool-detail-body">
+      <h2>South Calgary Outdoor Pool</h2>
+      <div>
+                <span class="badge badge-adaptive">Adaptive Aquatics</span>
+        <span class="badge badge-extended">Extended Season</span>
+      </div>
+      <div class="pool-meta">
+        <strong>Address:</strong> 3130 16 Street SW<br>
+        <strong>Phone:</strong> <a href="tel:4032213513">403-221-3513</a><br>
+        <strong>Email:</strong> <a href="mailto:southcalgary@cospa.ca">southcalgary@cospa.ca</a><br>
+        <strong>Season:</strong> June 13, 2026 – September 20, 2026<br>
+        <strong>Neighbourhoods:</strong> South Calgary, Marda Loop, Altadore, Garrison Woods
+      </div>
+      <div class="pool-programs">
+        <strong>Programs:</strong> Swimming lessons (Lifesaving Society) · Public swim ($6/person) · Lane swim · Aquafit · Private rentals · Adaptive aquatics (Vecova partnership)
+      </div>
+      <div class="pool-detail-cta">
+        <a href="https://app.amilia.com/store/en/southcalgaryoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Stanley Park -->
+  <article class="pool-detail-card" data-opens="june-13" data-extended="false">
+    <img src="https://static.wixstatic.com/media/1aea8f_5486660492d24df6b143536d2509c2e1~mv2.jpg" alt="Stanley Park Outdoor Pool" loading="lazy">
+    <div class="pool-detail-body">
+      <h2>Stanley Park Outdoor Pool</h2>
+      <div>
+              </div>
+      <div class="pool-meta">
+        <strong>Address:</strong> 4011 1A St SW<br>
+        <strong>Phone:</strong> <a href="tel:4032213577">403-221-3577</a><br>
+        <strong>Email:</strong> <a href="mailto:stanleypark@cospa.ca">stanleypark@cospa.ca</a><br>
+        <strong>Season:</strong> June 13, 2026 – September 1, 2026<br>
+        <strong>Neighbourhoods:</strong> Elboya, Britannia, Parkhill, Windsor Park
+      </div>
+      <div class="pool-programs">
+        <strong>Programs:</strong> Swimming lessons (Lifesaving Society) · Public swim ($6/person) · Lane swim · Aquafit · Private rentals
+      </div>
+      <div class="pool-detail-cta">
+        <a href="https://app.amilia.com/store/en/stanleyparkoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://static.wixstatic.com/media/4dd6ee_87f447beca59483fb718f926fc4b90e2~mv2.png" alt="COSPA">
+      <p>Calgary Outdoor Swimming Pools Association manages 8 outdoor pools across Calgary on behalf of the City of Calgary.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="/">Home</a>
+      <a href="/our-pools">Our Pools</a>
+      <a href="/about">About Us</a>
+      <a href="/faq">FAQ</a>
+      <a href="/admission-policies">Admission Policies</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>
+        <a href="mailto:info@cospa.ca">info@cospa.ca</a><br>
+        403-207-5665<br>
+        426-918 16 Avenue NW<br>
+        Calgary, AB T2M 0K3
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 Calgary Outdoor Swimming Pools Association
+  </div>
+</footer>
+
+<script>
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.pool-detail-card').forEach(card => {
+      if (filter === 'all') {
+        card.style.display = '';
+      } else if (filter === 'extended') {
+        card.style.display = card.dataset.extended === 'true' ? '' : 'none';
+      } else {
+        card.style.display = card.dataset.opens === filter ? '' : 'none';
+      }
+    });
+  });
+});
+
+// Hide Register Now buttons before April 11, 2026
+(function() {
+  const liveDate = new Date('2026-04-11T00:00:00-06:00');
+  if (new Date() < liveDate) {
+    document.querySelectorAll('.btn-register').forEach(btn => btn.classList.add('hidden'));
+  }
+})();
+</script>
+
+</body>
+</html>

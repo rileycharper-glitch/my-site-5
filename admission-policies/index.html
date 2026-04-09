@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admission Policies — COSPA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --navy: #10287E; --blue: #1563B7; --bright: #1798DE; --cream: #F5F3EF; --sand: #E7DFD1; --tan: #D9CAB3; --olive: #2B3210; --white: #FFFFFF; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Nunito', sans-serif; color: var(--olive); background: var(--cream); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 72px; box-shadow: 0 2px 8px rgba(16,40,126,0.15); }
+.header-logo { height: 48px; }
+.header-nav { display: flex; align-items: center; gap: 1.5rem; }
+.header-nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
+.header-nav a:hover { color: #fff; }
+.header-nav a.active { color: #fff; border-bottom: 2px solid var(--bright); padding-bottom: 2px; }
+.btn-find-pool { display: inline-block; background: var(--bright); color: #fff; padding: 0.6rem 1.4rem; border-radius: 6px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+.btn-find-pool:hover { background: #1285c7; transform: translateY(-1px); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; }
+@media (max-width: 768px) { .header-nav { display: none; } .header-nav.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2rem; gap: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); } .nav-toggle { display: block; } }
+
+/* HERO */
+.page-hero { position: relative; min-height: 300px; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+.page-hero-bg { position: absolute; inset: 0; background: url('https://static.wixstatic.com/media/1aea8f_fde517db5df243838c8610ab3fd0375e~mv2.jpg') center/cover no-repeat; }
+.page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(16,40,126,0.7) 0%, rgba(16,40,126,0.85) 100%); }
+.page-hero-content { position: relative; z-index: 2; padding: 3rem 1.5rem; }
+.page-hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--white); margin-bottom: 0.5rem; }
+.page-hero p { color: rgba(255,255,255,0.85); font-size: 1.1rem; }
+
+/* POLICIES */
+.policies { max-width: 900px; margin: 0 auto; padding: 3.5rem 2rem; }
+.policy-card { background: var(--white); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(43,50,16,0.06); }
+.policy-card h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--navy); margin-bottom: 0.75rem; }
+.policy-card p { font-size: 1rem; line-height: 1.8; margin-bottom: 0.5rem; }
+.price-highlight { display: inline-block; background: var(--sand); padding: 0.75rem 1.5rem; border-radius: 8px; font-size: 1.3rem; font-weight: 800; color: var(--navy); margin: 0.75rem 0; }
+.price-note { font-size: 0.95rem; color: var(--olive); }
+.policy-icon { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+
+/* FOOTER */
+.site-footer { background: var(--navy); color: rgba(255,255,255,0.8); padding: 3rem 2rem 2rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+@media (max-width: 768px) { .footer-inner { grid-template-columns: 1fr; text-align: center; } }
+.footer-brand img { height: 48px; margin-bottom: 1rem; }
+.footer-brand p { font-size: 0.85rem; line-height: 1.7; }
+.footer-links h4, .footer-contact h4 { color: #fff; font-size: 0.95rem; margin-bottom: 0.75rem; font-weight: 700; }
+.footer-links a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; padding: 0.2rem 0; transition: color 0.2s; }
+.footer-links a:hover { color: #fff; }
+.footer-contact p { font-size: 0.88rem; line-height: 1.7; }
+.footer-contact a { color: var(--bright); text-decoration: none; }
+.footer-contact a:hover { text-decoration: underline; }
+.footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.12); text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/"><img src="https://static.wixstatic.com/media/4dd6ee_87f447beca59483fb718f926fc4b90e2~mv2.png" alt="COSPA" class="header-logo"></a>
+  <button class="nav-toggle" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
+  <nav class="header-nav">
+    <a href="/">Home</a>
+    <a href="/our-pools">Our Pools</a>
+    <a href="/about">About</a>
+    <a href="/faq">FAQ</a>
+    <a href="/contact">Contact</a>
+    <a href="/" class="btn-find-pool">Find Your Pool</a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <h1>Admission Policies</h1>
+    <p>Pricing, weather, cancellation, and refund policies for COSPA pools</p>
+  </div>
+</section>
+
+<section class="policies">
+
+  <div class="policy-card">
+    <h2>Public Swim Pricing</h2>
+    <div class="price-highlight">$6 per person</div>
+    <p class="price-note">Children 1 and under swim free.</p>
+    <p>Fees for other programs (swim lessons, lane swim, Aquafit, rentals) are set by each pool. Check your pool's Amilia store for current pricing.</p>
+  </div>
+
+  <div class="policy-card">
+    <h2>Weather Policy</h2>
+    <p>Public swims proceed through rain and cool temperatures. We're outdoor pools in Calgary — a little weather is part of the experience.</p>
+    <p><strong>Swims will be cancelled</strong> in the event of lightning, hail, or heavy smoke. Safety of swimmers and staff always comes first.</p>
+  </div>
+
+  <div class="policy-card">
+    <h2>Cancellation &amp; Refunds — Public Swim</h2>
+    <p><strong>Public swim admissions are not refundable or transferable.</strong></p>
+    <p><strong>Staff cancellation before start time:</strong> If a swim is cancelled by staff before the scheduled start time, a credit will be issued. Credits are valid until the end of the current season.</p>
+    <p><strong>Evacuation mid-swim:</strong> If a swim is evacuated after it has started, no refund or credit will be issued.</p>
+  </div>
+
+  <div class="policy-card">
+    <h2>Swim Lessons</h2>
+    <p>Lesson fees are paid at the time of booking through Amilia.</p>
+    <p><strong>Swim lesson registrations are not refundable or transferable.</strong></p>
+  </div>
+
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://static.wixstatic.com/media/4dd6ee_87f447beca59483fb718f926fc4b90e2~mv2.png" alt="COSPA">
+      <p>Calgary Outdoor Swimming Pools Association manages 8 outdoor pools across Calgary on behalf of the City of Calgary.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="/">Home</a><a href="/our-pools">Our Pools</a><a href="/about">About Us</a><a href="/faq">FAQ</a><a href="/admission-policies">Admission Policies</a><a href="/contact">Contact</a>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p><a href="mailto:info@cospa.ca">info@cospa.ca</a><br>403-207-5665<br>426-918 16 Avenue NW<br>Calgary, AB T2M 0K3</p>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Calgary Outdoor Swimming Pools Association</div>
+</footer>
+
+</body>
+</html>

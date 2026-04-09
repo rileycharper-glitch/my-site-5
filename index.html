@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COSPA — Calgary Outdoor Swimming Pools Association</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   COSPA Homepage — Phase 1 Prototype
+   Palette: Navy #10287E · Blue #1563B7 · Bright #1798DE
+           Cream #F5F3EF · Sand #E7DFD1 · Tan #D9CAB3
+           Olive #2B3210
+   Typography: DM Serif Display (headlines) · Nunito (body)
+   ============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #10287E;
+  --blue: #1563B7;
+  --bright: #1798DE;
+  --cream: #F5F3EF;
+  --sand: #E7DFD1;
+  --tan: #D9CAB3;
+  --olive: #2B3210;
+  --white: #FFFFFF;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: var(--olive);
+  background: var(--cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- HEADER ---- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--navy);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  box-shadow: 0 2px 8px rgba(16,40,126,0.15);
+}
+.header-logo { height: 48px; }
+.header-nav { display: flex; align-items: center; gap: 1.5rem; }
+.header-nav a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+.header-nav a:hover { color: #fff; }
+.btn-find-pool {
+  display: inline-block;
+  background: var(--bright);
+  color: #fff;
+  padding: 0.6rem 1.4rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-find-pool:hover { background: #1285c7; transform: translateY(-1px); }
+
+/* Mobile nav collapse */
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; }
+
+@media (max-width: 768px) {
+  .header-nav { display: none; }
+  .header-nav.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: var(--navy);
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .nav-toggle { display: block; }
+  .header-cta-desktop { display: none; }
+}
+
+/* ---- HERO ---- */
+.hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://static.wixstatic.com/media/0b340f_c3c79e3f18314026953215b24762f83c~mv2.jpg') center/cover no-repeat;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(245,243,239,0.72) 0%,
+    rgba(245,243,239,0.58) 60%,
+    rgba(245,243,239,0.85) 100%
+  );
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  padding: 3rem 1.5rem;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  color: var(--navy);
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+.hero p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--olive);
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+.hero .btn-find-pool {
+  font-size: 1.1rem;
+  padding: 0.85rem 2rem;
+}
+
+/* ---- DATE STRIP ---- */
+.date-strip {
+  background: var(--sand);
+  border-top: 3px solid var(--tan);
+  border-bottom: 3px solid var(--tan);
+  padding: 1.25rem 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.date-strip-item {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--navy);
+}
+.date-strip-item span {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--olive);
+  margin-top: 0.15rem;
+}
+
+/* ---- POOL GRID ---- */
+.pool-section {
+  padding: 4rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.pool-section h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: var(--navy);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.pool-section .subtitle {
+  text-align: center;
+  color: var(--olive);
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+}
+.pool-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 1024px) { .pool-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .pool-grid { grid-template-columns: 1fr; } }
+
+.pool-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(43,50,16,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.pool-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(43,50,16,0.12);
+}
+.pool-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+.pool-card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.pool-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.15rem;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+.pool-card .neighbourhoods {
+  font-size: 0.85rem;
+  color: var(--blue);
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+.pool-card .open-date {
+  font-size: 0.85rem;
+  color: var(--olive);
+  margin-bottom: 1rem;
+}
+.pool-card .btn-register {
+  display: block;
+  text-align: center;
+  background: var(--bright);
+  color: #fff;
+  padding: 0.65rem 1rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  margin-top: auto;
+  transition: background 0.2s, transform 0.15s;
+}
+.pool-card .btn-register:hover { background: #1285c7; transform: translateY(-1px); }
+
+/* ---- PROGRAMS ---- */
+.programs {
+  background: var(--sand);
+  padding: 4rem 2rem;
+}
+.programs-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.programs h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: var(--navy);
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 768px) { .programs-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .programs-grid { grid-template-columns: 1fr; } }
+
+.program-tile {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(43,50,16,0.06);
+}
+.program-tile .icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.program-tile h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.program-tile p {
+  font-size: 0.88rem;
+  color: var(--olive);
+  line-height: 1.5;
+}
+
+/* ---- FOOTER ---- */
+.site-footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.8);
+  padding: 3rem 2rem 2rem;
+}
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+}
+@media (max-width: 768px) { .footer-inner { grid-template-columns: 1fr; text-align: center; } }
+
+.footer-brand img { height: 48px; margin-bottom: 1rem; }
+.footer-brand p { font-size: 0.85rem; line-height: 1.7; }
+.footer-links h4, .footer-contact h4 {
+  color: #fff;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+.footer-links a {
+  display: block;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 0.88rem;
+  padding: 0.2rem 0;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: #fff; }
+.footer-contact p { font-size: 0.88rem; line-height: 1.7; }
+.footer-contact a { color: var(--bright); text-decoration: none; }
+.footer-contact a:hover { text-decoration: underline; }
+.footer-bottom {
+  max-width: 1100px;
+  margin: 2rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <a href="/">
+    <img src="https://static.wixstatic.com/media/4dd6ee_87f447beca59483fb718f926fc4b90e2~mv2.png" alt="COSPA" class="header-logo">
+  </a>
+  <button class="nav-toggle" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="header-nav">
+    <a href="/">Home</a>
+    <a href="/our-pools">Our Pools</a>
+    <a href="/about">About</a>
+    <a href="/faq">FAQ</a>
+    <a href="/contact">Contact</a>
+    <a href="#find-your-pool" class="btn-find-pool">Find Your Pool</a>
+  </nav>
+  <a href="#find-your-pool" class="btn-find-pool header-cta-desktop" style="margin-left:auto;">Find Your Pool</a>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Registration opens April 14, 2026 at 9:00 AM. Find your pool.</h1>
+    <p>8 outdoor pools across Calgary. Swim lessons, public swim, and more.</p>
+    <a href="#find-your-pool" class="btn-find-pool">Find Your Pool</a>
+  </div>
+</section>
+
+<!-- ============ DATE STRIP ============ -->
+<div class="date-strip">
+  <div class="date-strip-item">
+    Browse programs starting April 11
+    <span>Preview activities on Amilia before registration day</span>
+  </div>
+  <div class="date-strip-item">
+    Registration opens April 14 at 9:00 AM
+    <span>Swim lessons, public swim, lane swim, and more</span>
+  </div>
+</div>
+
+<!-- ============ POOL CARDS ============ -->
+<section class="pool-section" id="find-your-pool">
+  <h2>Find Your Pool</h2>
+  <p class="subtitle">8 outdoor pools across Calgary neighbourhoods. Pick yours and register.</p>
+  <div class="pool-grid">
+
+    <article class="pool-card">
+      <img src="https://static.wixstatic.com/media/1aea8f_e6d02c7486de4aae92f1f62bcd8eb10e~mv2.jpg" alt="Bowview Outdoor Pool" loading="lazy">
+      <div class="pool-card-body">
+        <h3>Bowview Outdoor Pool</h3>
+        <div class="neighbourhoods">Bowness, Montgomery, Parkdale</div>
+        <div class="open-date">Opens June 8, 2026</div>
+        <a href="https://app.amilia.com/store/en/bowviewoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </article>
+
+    <article class="pool-card">
+      <img src="https://static.wixstatic.com/media/1aea8f_fffd6d673c294af8b7399d9a628dd4d1~mv2.jpg" alt="Forest Lawn Outdoor Pool" loading="lazy">
+      <div class="pool-card-body">
+        <h3>Forest Lawn Outdoor Pool</h3>
+        <div class="neighbourhoods">Forest Lawn, Dover, Erin Woods</div>
+        <div class="open-date">Opens June 8, 2026</div>
+        <a href="https://app.amilia.com/store/en/forestlawnoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </article>
+
+    <article class="pool-card">
+      <img src="https://static.wixstatic.com/media/1aea8f_7e6162953857411ca18736f868b8f52d~mv2.jpg" alt="Highwood Outdoor Pool" loading="lazy">
+      <div class="pool-card-body">
+        <h3>Highwood Outdoor Pool</h3>
+        <div class="neighbourhoods">Highwood, Rosedale, Crescent Heights</div>
+        <div class="open-date">Opens June 8, 2026</div>
+        <a href="https://app.amilia.com/store/en/highwoodoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </article>
+
+    <article class="pool-card">
+      <img src="https://static.wixstatic.com/media/1aea8f_32b89de866f44b2bbe847c879cb42a23~mv2.jpg" alt="Millican Ogden Outdoor Pool" loading="lazy">
+      <div class="pool-card-body">
+        <h3>Millican Ogden Outdoor Pool</h3>
+        <div class="neighbourhoods">Millican, Ogden, Lynnwood</div>
+        <div class="open-date">Opens June 13, 2026</div>
+        <a href="https://app.amilia.com/store/en/millicanogdenoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </article>
+
+    <article class="pool-card">
+      <img src="https://static.wixstatic.com/media/1aea8f_ada175adb02342209f84130a9f74c556~mv2.jpg" alt="Mount Pleasant Outdoor Pool" loading="lazy">
+      <div class="pool-card-body">
+        <h3>Mount Pleasant Outdoor Pool</h3>
+        <div class="neighbourhoods">Mount Pleasant, Tuxedo Park</div>
+        <div class="open-date">Opens June 13, 2026</div>
+        <a href="https://app.amilia.com/store/en/mountpleasantoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </article>
+
+    <article class="pool-card">
+      <img src="https://static.wixstatic.com/media/1aea8f_1e7349c545cf4ae18912a58d4f8f0f6e~mv2.webp" alt="Silver Springs Outdoor Pool" loading="lazy">
+      <div class="pool-card-body">
+        <h3>Silver Springs Outdoor Pool</h3>
+        <div class="neighbourhoods">Silver Springs, Scenic Acres</div>
+        <div class="open-date">Opens June 8, 2026</div>
+        <a href="https://app.amilia.com/store/en/silverspringsoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </article>
+
+    <article class="pool-card">
+      <img src="https://static.wixstatic.com/media/1aea8f_3247eaa8a7d44de78187d8e7f90bb327~mv2.jpeg" alt="South Calgary Outdoor Pool" loading="lazy">
+      <div class="pool-card-body">
+        <h3>South Calgary Outdoor Pool</h3>
+        <div class="neighbourhoods">South Calgary, Marda Loop, Altadore</div>
+        <div class="open-date">Opens June 13, 2026</div>
+        <a href="https://app.amilia.com/store/en/southcalgaryoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </article>
+
+    <article class="pool-card">
+      <img src="https://static.wixstatic.com/media/1aea8f_5486660492d24df6b143536d2509c2e1~mv2.jpg" alt="Stanley Park Outdoor Pool" loading="lazy">
+      <div class="pool-card-body">
+        <h3>Stanley Park Outdoor Pool</h3>
+        <div class="neighbourhoods">Elboya, Britannia, Parkhill</div>
+        <div class="open-date">Opens June 13, 2026</div>
+        <a href="https://app.amilia.com/store/en/stanleyparkoutdoorpool/shop/programs" class="btn-register" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ PROGRAMS ============ -->
+<section class="programs">
+  <div class="programs-inner">
+    <h2>What We Offer</h2>
+    <div class="programs-grid">
+      <div class="program-tile">
+        <span class="icon" aria-hidden="true">&#127946;</span>
+        <h3>Swimming Lessons</h3>
+        <p>Lifesaving Society Swim for Life program for all ages and levels.</p>
+      </div>
+      <div class="program-tile">
+        <span class="icon" aria-hidden="true">&#127754;</span>
+        <h3>Public Swim</h3>
+        <p>$6 per person. Children 1 and under swim free. Walk-in welcome.</p>
+      </div>
+      <div class="program-tile">
+        <span class="icon" aria-hidden="true">&#127944;</span>
+        <h3>Lane Swim &amp; Aquafit</h3>
+        <p>Dedicated lanes for fitness swimming and instructor-led aquafit classes.</p>
+      </div>
+      <div class="program-tile">
+        <span class="icon" aria-hidden="true">&#9829;</span>
+        <h3>Adaptive Aquatics</h3>
+        <p>Inclusive programming with Vecova at Forest Lawn and South Calgary pools.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://static.wixstatic.com/media/4dd6ee_87f447beca59483fb718f926fc4b90e2~mv2.png" alt="COSPA">
+      <p>Calgary Outdoor Swimming Pools Association manages 8 outdoor pools across Calgary on behalf of the City of Calgary.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="/our-pools">Our Pools</a>
+      <a href="/about">About Us</a>
+      <a href="/faq">FAQ</a>
+      <a href="/admission-policies">Admission Policies</a>
+      <a href="/account-creation">Account Creation</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>
+        <a href="mailto:info@cospa.ca">info@cospa.ca</a><br>
+        403-207-5665<br>
+        426-918 16 Avenue NW<br>
+        Calgary, AB T2M 0K3
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 Calgary Outdoor Swimming Pools Association
+  </div>
+</footer>
+
+</body>
+</html>

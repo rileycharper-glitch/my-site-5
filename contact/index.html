@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — COSPA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --navy: #10287E; --blue: #1563B7; --bright: #1798DE; --cream: #F5F3EF; --sand: #E7DFD1; --tan: #D9CAB3; --olive: #2B3210; --white: #FFFFFF; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Nunito', sans-serif; color: var(--olive); background: var(--cream); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 72px; box-shadow: 0 2px 8px rgba(16,40,126,0.15); }
+.header-logo { height: 48px; }
+.header-nav { display: flex; align-items: center; gap: 1.5rem; }
+.header-nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
+.header-nav a:hover { color: #fff; }
+.header-nav a.active { color: #fff; border-bottom: 2px solid var(--bright); padding-bottom: 2px; }
+.btn-find-pool { display: inline-block; background: var(--bright); color: #fff; padding: 0.6rem 1.4rem; border-radius: 6px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+.btn-find-pool:hover { background: #1285c7; transform: translateY(-1px); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; }
+@media (max-width: 768px) { .header-nav { display: none; } .header-nav.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2rem; gap: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); } .nav-toggle { display: block; } }
+
+.page-hero { background: var(--navy); padding: 3rem 2rem; text-align: center; }
+.page-hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--white); margin-bottom: 0.5rem; }
+.page-hero p { color: rgba(255,255,255,0.85); font-size: 1.1rem; }
+
+/* GENERAL CONTACT */
+.general-contact { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+@media (max-width: 600px) { .general-contact { grid-template-columns: 1fr; } }
+.contact-card { background: var(--white); border-radius: 12px; padding: 2rem; box-shadow: 0 2px 8px rgba(43,50,16,0.06); }
+.contact-card h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--navy); margin-bottom: 1rem; }
+.contact-card p { font-size: 1rem; line-height: 1.8; }
+.contact-card a { color: var(--blue); text-decoration: none; }
+.contact-card a:hover { text-decoration: underline; }
+.contact-card-highlight { background: var(--navy); color: var(--white); }
+.contact-card-highlight h2 { color: var(--white); }
+.contact-card-highlight a { color: var(--bright); }
+
+/* POOL CONTACTS */
+.pool-contacts-section { background: var(--sand); padding: 3rem 2rem; }
+.pool-contacts-inner { max-width: 1100px; margin: 0 auto; }
+.pool-contacts-inner h2 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--navy); text-align: center; margin-bottom: 2.5rem; }
+.pool-contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+@media (max-width: 1024px) { .pool-contact-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .pool-contact-grid { grid-template-columns: 1fr; } }
+.pool-contact-card { background: var(--white); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(43,50,16,0.06); transition: transform 0.2s; }
+.pool-contact-card:hover { transform: translateY(-2px); }
+.pool-contact-card img { width: 100%; height: 140px; object-fit: cover; display: block; }
+.pool-contact-body { padding: 1.25rem; }
+.pool-contact-body h3 { font-family: 'DM Serif Display', serif; font-size: 1rem; color: var(--navy); margin-bottom: 0.5rem; line-height: 1.3; }
+.pool-contact-body p { font-size: 0.88rem; line-height: 1.6; }
+.pool-contact-body a { color: var(--blue); text-decoration: none; }
+.pool-contact-body a:hover { text-decoration: underline; }
+
+/* FOOTER */
+.site-footer { background: var(--navy); color: rgba(255,255,255,0.8); padding: 3rem 2rem 2rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+@media (max-width: 768px) { .footer-inner { grid-template-columns: 1fr; text-align: center; } }
+.footer-brand img { height: 48px; margin-bottom: 1rem; }
+.footer-brand p { font-size: 0.85rem; line-height: 1.7; }
+.footer-links h4, .footer-contact h4 { color: #fff; font-size: 0.95rem; margin-bottom: 0.75rem; font-weight: 700; }
+.footer-links a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; padding: 0.2rem 0; transition: color 0.2s; }
+.footer-links a:hover { color: #fff; }
+.footer-contact p { font-size: 0.88rem; line-height: 1.7; }
+.footer-contact a { color: var(--bright); text-decoration: none; }
+.footer-contact a:hover { text-decoration: underline; }
+.footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.12); text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/"><img src="https://static.wixstatic.com/media/4dd6ee_87f447beca59483fb718f926fc4b90e2~mv2.png" alt="COSPA" class="header-logo"></a>
+  <button class="nav-toggle" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
+  <nav class="header-nav">
+    <a href="/">Home</a>
+    <a href="/our-pools">Our Pools</a>
+    <a href="/about">About</a>
+    <a href="/faq">FAQ</a>
+    <a href="/contact" class="active">Contact</a>
+    <a href="/" class="btn-find-pool">Find Your Pool</a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <h1>Contact Us</h1>
+  <p>Get in touch with COSPA or reach your pool directly</p>
+</section>
+
+<!-- GENERAL CONTACT -->
+<section class="general-contact">
+  <div class="contact-card contact-card-highlight">
+    <h2>COSPA Head Office</h2>
+    <p>
+      <strong>Phone:</strong> <a href="tel:4032075665">403-207-5665</a><br>
+      <strong>Email:</strong> <a href="mailto:info@cospa.ca">info@cospa.ca</a><br><br>
+      <strong>Mailing Address:</strong><br>
+      426-918 16 Avenue NW<br>
+      Calgary, AB T2M 0K3
+    </p>
+  </div>
+  <div class="contact-card">
+    <h2>Quick Help</h2>
+    <p>
+      <strong>Registration questions?</strong><br>
+      <a href="mailto:info@cospa.ca">info@cospa.ca</a><br><br>
+      <strong>Account help?</strong><br>
+      <a href="/account-creation">Account creation guide</a><br><br>
+      <strong>Pool schedules?</strong><br>
+      Check your pool's Amilia store or call the pool directly below.
+    </p>
+  </div>
+</section>
+
+<!-- POOL CONTACTS -->
+<section class="pool-contacts-section">
+  <div class="pool-contacts-inner">
+    <h2>Pool Contacts</h2>
+    <div class="pool-contact-grid">
+
+      <div class="pool-contact-card">
+        <img src="https://static.wixstatic.com/media/1aea8f_e6d02c7486de4aae92f1f62bcd8eb10e~mv2.jpg" alt="Bowview Outdoor Pool" loading="lazy">
+        <div class="pool-contact-body">
+          <h3>Bowview Outdoor Pool</h3>
+          <p>1910 6 Ave NW<br><a href="tel:4032213571">403-221-3571</a><br><a href="mailto:bowview@cospa.ca">bowview@cospa.ca</a></p>
+        </div>
+      </div>
+
+      <div class="pool-contact-card">
+        <img src="https://static.wixstatic.com/media/1aea8f_fffd6d673c294af8b7399d9a628dd4d1~mv2.jpg" alt="Forest Lawn Outdoor Pool" loading="lazy">
+        <div class="pool-contact-body">
+          <h3>Forest Lawn Outdoor Pool</h3>
+          <p>1706 39 Street SE<br><a href="tel:4032213595">403-221-3595</a><br><a href="mailto:forestlawn@cospa.ca">forestlawn@cospa.ca</a></p>
+        </div>
+      </div>
+
+      <div class="pool-contact-card">
+        <img src="https://static.wixstatic.com/media/1aea8f_7e6162953857411ca18736f868b8f52d~mv2.jpg" alt="Highwood Outdoor Pool" loading="lazy">
+        <div class="pool-contact-body">
+          <h3>Highwood Outdoor Pool</h3>
+          <p>25 Holmwood Avenue NW<br><a href="tel:4032213574">403-221-3574</a><br><a href="mailto:highwood@cospa.ca">highwood@cospa.ca</a></p>
+        </div>
+      </div>
+
+      <div class="pool-contact-card">
+        <img src="https://static.wixstatic.com/media/1aea8f_32b89de866f44b2bbe847c879cb42a23~mv2.jpg" alt="Millican Ogden Outdoor Pool" loading="lazy">
+        <div class="pool-contact-body">
+          <h3>Millican Ogden Outdoor Pool</h3>
+          <p>2094 69th Avenue SE<br><a href="tel:4032213599">403-221-3599</a><br><a href="mailto:millicanogden@cospa.ca">millicanogden@cospa.ca</a></p>
+        </div>
+      </div>
+
+      <div class="pool-contact-card">
+        <img src="https://static.wixstatic.com/media/1aea8f_ada175adb02342209f84130a9f74c556~mv2.jpg" alt="Mount Pleasant Outdoor Pool" loading="lazy">
+        <div class="pool-contact-body">
+          <h3>Mount Pleasant Outdoor Pool</h3>
+          <p>2310 6 St. NW<br><a href="tel:4032214288">403-221-4288</a><br><a href="mailto:mountpleasant@cospa.ca">mountpleasant@cospa.ca</a></p>
+        </div>
+      </div>
+
+      <div class="pool-contact-card">
+        <img src="https://static.wixstatic.com/media/1aea8f_1e7349c545cf4ae18912a58d4f8f0f6e~mv2.webp" alt="Silver Springs Outdoor Pool" loading="lazy">
+        <div class="pool-contact-body">
+          <h3>Silver Springs Outdoor Pool</h3>
+          <p>5720 Silver Ridge Dr NW<br><a href="tel:4032213897">403-221-3897</a><br><a href="mailto:silversprings@cospa.ca">silversprings@cospa.ca</a></p>
+        </div>
+      </div>
+
+      <div class="pool-contact-card">
+        <img src="https://static.wixstatic.com/media/1aea8f_3247eaa8a7d44de78187d8e7f90bb327~mv2.jpeg" alt="South Calgary Outdoor Pool" loading="lazy">
+        <div class="pool-contact-body">
+          <h3>South Calgary Outdoor Pool</h3>
+          <p>3130 16 Street SW<br><a href="tel:4032213513">403-221-3513</a><br><a href="mailto:southcalgary@cospa.ca">southcalgary@cospa.ca</a></p>
+        </div>
+      </div>
+
+      <div class="pool-contact-card">
+        <img src="https://static.wixstatic.com/media/1aea8f_5486660492d24df6b143536d2509c2e1~mv2.jpg" alt="Stanley Park Outdoor Pool" loading="lazy">
+        <div class="pool-contact-body">
+          <h3>Stanley Park Outdoor Pool</h3>
+          <p>4011 1A St SW<br><a href="tel:4032213577">403-221-3577</a><br><a href="mailto:stanleypark@cospa.ca">stanleypark@cospa.ca</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://static.wixstatic.com/media/4dd6ee_87f447beca59483fb718f926fc4b90e2~mv2.png" alt="COSPA">
+      <p>Calgary Outdoor Swimming Pools Association manages 8 outdoor pools across Calgary on behalf of the City of Calgary.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="/">Home</a><a href="/our-pools">Our Pools</a><a href="/about">About Us</a><a href="/faq">FAQ</a><a href="/admission-policies">Admission Policies</a><a href="/contact">Contact</a>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p><a href="mailto:info@cospa.ca">info@cospa.ca</a><br>403-207-5665<br>426-918 16 Avenue NW<br>Calgary, AB T2M 0K3</p>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Calgary Outdoor Swimming Pools Association</div>
+</footer>
+
+</body>
+</html>

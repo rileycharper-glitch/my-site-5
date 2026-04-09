@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — COSPA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --navy: #10287E; --blue: #1563B7; --bright: #1798DE; --cream: #F5F3EF; --sand: #E7DFD1; --tan: #D9CAB3; --olive: #2B3210; --white: #FFFFFF; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Nunito', sans-serif; color: var(--olive); background: var(--cream); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 72px; box-shadow: 0 2px 8px rgba(16,40,126,0.15); }
+.header-logo { height: 48px; }
+.header-nav { display: flex; align-items: center; gap: 1.5rem; }
+.header-nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
+.header-nav a:hover { color: #fff; }
+.header-nav a.active { color: #fff; border-bottom: 2px solid var(--bright); padding-bottom: 2px; }
+.btn-find-pool { display: inline-block; background: var(--bright); color: #fff; padding: 0.6rem 1.4rem; border-radius: 6px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+.btn-find-pool:hover { background: #1285c7; transform: translateY(-1px); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; }
+@media (max-width: 768px) { .header-nav { display: none; } .header-nav.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2rem; gap: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); } .nav-toggle { display: block; } }
+
+.page-hero { background: var(--navy); padding: 3rem 2rem; text-align: center; }
+.page-hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--white); margin-bottom: 0.5rem; }
+.page-hero p { color: rgba(255,255,255,0.85); font-size: 1.1rem; }
+
+/* FAQ ACCORDION */
+.faq-section { max-width: 860px; margin: 0 auto; padding: 3rem 2rem; }
+.faq-item { background: var(--white); border-radius: 10px; margin-bottom: 0.75rem; box-shadow: 0 1px 4px rgba(43,50,16,0.06); overflow: hidden; }
+.faq-question { width: 100%; padding: 1.25rem 1.5rem; border: none; background: none; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-family: 'Nunito', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); }
+.faq-question:hover { background: rgba(21,99,183,0.04); }
+.faq-question .chevron { font-size: 1.2rem; transition: transform 0.25s; flex-shrink: 0; }
+.faq-item.open .faq-question .chevron { transform: rotate(180deg); }
+.faq-answer { padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+.faq-item.open .faq-answer { padding: 0 1.5rem 1.5rem; max-height: 500px; }
+.faq-answer p { font-size: 0.98rem; line-height: 1.8; color: var(--olive); }
+.faq-answer a { color: var(--blue); text-decoration: none; }
+.faq-answer a:hover { text-decoration: underline; }
+
+/* FOOTER */
+.site-footer { background: var(--navy); color: rgba(255,255,255,0.8); padding: 3rem 2rem 2rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+@media (max-width: 768px) { .footer-inner { grid-template-columns: 1fr; text-align: center; } }
+.footer-brand img { height: 48px; margin-bottom: 1rem; }
+.footer-brand p { font-size: 0.85rem; line-height: 1.7; }
+.footer-links h4, .footer-contact h4 { color: #fff; font-size: 0.95rem; margin-bottom: 0.75rem; font-weight: 700; }
+.footer-links a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; padding: 0.2rem 0; transition: color 0.2s; }
+.footer-links a:hover { color: #fff; }
+.footer-contact p { font-size: 0.88rem; line-height: 1.7; }
+.footer-contact a { color: var(--bright); text-decoration: none; }
+.footer-contact a:hover { text-decoration: underline; }
+.footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.12); text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/"><img src="https://static.wixstatic.com/media/4dd6ee_87f447beca59483fb718f926fc4b90e2~mv2.png" alt="COSPA" class="header-logo"></a>
+  <button class="nav-toggle" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
+  <nav class="header-nav">
+    <a href="/">Home</a>
+    <a href="/our-pools">Our Pools</a>
+    <a href="/about">About</a>
+    <a href="/faq" class="active">FAQ</a>
+    <a href="/contact">Contact</a>
+    <a href="/" class="btn-find-pool">Find Your Pool</a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <h1>Frequently Asked Questions</h1>
+  <p>Everything you need to know about COSPA pools, programs, and registration</p>
+</section>
+
+<section class="faq-section">
+
+  <div class="faq-item">
+    <button class="faq-question">When is the outdoor pool season? <span class="chevron">&#9660;</span></button>
+    <div class="faq-answer"><p>The season runs approximately 80 days each summer, from Father's Day weekend to Labour Day. In 2026, the first pools open June 8 (Bowview, Forest Lawn, Highwood, Silver Springs) and the remaining pools open June 13 (Millican Ogden, Mount Pleasant, South Calgary, Stanley Park). Most pools close September 1, with Bowview, South Calgary, and Mount Pleasant offering an extended season until September 20.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">When does registration open? <span class="chevron">&#9660;</span></button>
+    <div class="faq-answer"><p>Activities become viewable on Amilia on <strong>April 11, 2026</strong>. Registration opens to the public on <strong>April 14, 2026 at 9:00 AM</strong>.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">Where can I find pool schedules? <span class="chevron">&#9660;</span></button>
+    <div class="faq-answer"><p>Check your pool's Amilia store for the most up-to-date schedule, or call the pool directly. Pool phone numbers are listed on our <a href="/our-pools">Our Pools</a> page.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">How much does public swim cost? <span class="chevron">&#9660;</span></button>
+    <div class="faq-answer"><p>Public swim is <strong>$6 per person</strong>. Children 1 and under swim free.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">What temperature is the water? <span class="chevron">&#9660;</span></button>
+    <div class="faq-answer"><p>All COSPA pools are heated to 27 degrees Celsius.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">Can I use a City of Calgary pass at COSPA pools? <span class="chevron">&#9660;</span></button>
+    <div class="faq-answer"><p><strong>No.</strong> City of Calgary passes are NOT accepted at COSPA pools. COSPA pools are managed separately from City-operated recreation facilities.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">What are the pool rules and guidelines? <span class="chevron">&#9660;</span></button>
+    <div class="faq-answer"><p>All COSPA pools follow the City of Calgary aquatic facility guidelines. <a href="https://www.calgary.ca/rec-locations/pools/guidelines.html" target="_blank" rel="noopener">View the full guidelines</a>.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">What swim lesson program do you use? <span class="chevron">&#9660;</span></button>
+    <div class="faq-answer"><p>COSPA uses the <a href="https://www.lifesaving.org/courses-and-programs/lifesaving-society-swimming-lifesaving-programs" target="_blank" rel="noopener">Lifesaving Society Swim for Life program</a> for all swimming lessons. We transitioned from Red Cross to Lifesaving Society in 2022.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">My child was in Red Cross lessons. How do levels transfer? <span class="chevron">&#9660;</span></button>
+    <div class="faq-answer"><p>The Lifesaving Society provides a transition chart for Red Cross swimmers. <a href="https://www.lifesaving.org/public/download/documents/53752" target="_blank" rel="noopener">View the Red Cross transition chart</a>.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">My child was in YMCA lessons. How do levels transfer? <span class="chevron">&#9660;</span></button>
+    <div class="faq-answer"><p>The Lifesaving Society provides a transition chart for YMCA swimmers. <a href="https://www.lifesaving.org/public/download/documents/53751" target="_blank" rel="noopener">View the YMCA transition chart</a>.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">My child was in I Can Swim. How do levels transfer? <span class="chevron">&#9660;</span></button>
+    <div class="faq-answer"><p>The Lifesaving Society provides a transition chart for I Can Swim participants. <a href="https://www.lifesaving.org/public/download/documents/53750" target="_blank" rel="noopener">View the I Can Swim transition chart</a>.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">Is there fee assistance available? <span class="chevron">&#9660;</span></button>
+    <div class="faq-answer"><p>Yes. Families with a City of Calgary Recreation Fee Assistance card receive <strong>50% off public swim walk-in admission</strong>.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">Can I get a refund if I cancel? <span class="chevron">&#9660;</span></button>
+    <div class="faq-answer"><p>Public swim admissions and swim lesson registrations are not refundable or transferable. If a swim is cancelled by staff before the scheduled start time, a credit will be issued that is valid until the end of the season. If a swim is evacuated after it has started, no refund or credit is issued.</p></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">Do you offer adaptive aquatics? <span class="chevron">&#9660;</span></button>
+    <div class="faq-answer"><p>Yes. Through our partnership with Vecova, adaptive aquatics programming is available at Forest Lawn Outdoor Pool and South Calgary Outdoor Pool.</p></div>
+  </div>
+
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://static.wixstatic.com/media/4dd6ee_87f447beca59483fb718f926fc4b90e2~mv2.png" alt="COSPA">
+      <p>Calgary Outdoor Swimming Pools Association manages 8 outdoor pools across Calgary on behalf of the City of Calgary.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="/">Home</a><a href="/our-pools">Our Pools</a><a href="/about">About Us</a><a href="/faq">FAQ</a><a href="/admission-policies">Admission Policies</a><a href="/contact">Contact</a>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p><a href="mailto:info@cospa.ca">info@cospa.ca</a><br>403-207-5665<br>426-918 16 Avenue NW<br>Calgary, AB T2M 0K3</p>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Calgary Outdoor Swimming Pools Association</div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    // Toggle clicked
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+
+</body>
+</html>

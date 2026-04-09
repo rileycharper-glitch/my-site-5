@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — COSPA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --navy: #10287E; --blue: #1563B7; --bright: #1798DE; --cream: #F5F3EF; --sand: #E7DFD1; --tan: #D9CAB3; --olive: #2B3210; --white: #FFFFFF; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Nunito', sans-serif; color: var(--olive); background: var(--cream); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+/* HEADER */
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 72px; box-shadow: 0 2px 8px rgba(16,40,126,0.15); }
+.header-logo { height: 48px; }
+.header-nav { display: flex; align-items: center; gap: 1.5rem; }
+.header-nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
+.header-nav a:hover { color: #fff; }
+.header-nav a.active { color: #fff; border-bottom: 2px solid var(--bright); padding-bottom: 2px; }
+.btn-find-pool { display: inline-block; background: var(--bright); color: #fff; padding: 0.6rem 1.4rem; border-radius: 6px; font-weight: 700; font-size: 0.9rem; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; }
+.btn-find-pool:hover { background: #1285c7; transform: translateY(-1px); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; }
+@media (max-width: 768px) { .header-nav { display: none; } .header-nav.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2rem; gap: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); } .nav-toggle { display: block; } }
+
+/* PAGE HERO */
+.page-hero { position: relative; min-height: 340px; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+.page-hero-bg { position: absolute; inset: 0; background: url('https://static.wixstatic.com/media/1aea8f_5518fc6ddd594a74b5796c4b803a99c8~mv2.webp') center/cover no-repeat; }
+.page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(16,40,126,0.7) 0%, rgba(16,40,126,0.85) 100%); }
+.page-hero-content { position: relative; z-index: 2; padding: 3rem 1.5rem; }
+.page-hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--white); margin-bottom: 0.5rem; }
+.page-hero p { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+/* CONTENT */
+.content-section { max-width: 900px; margin: 0 auto; padding: 3.5rem 2rem; }
+.content-section h2 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--navy); margin-bottom: 1rem; }
+.content-section p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.25rem; }
+
+/* BOARD GRID */
+.board-section { background: var(--sand); padding: 4rem 2rem; }
+.board-inner { max-width: 1000px; margin: 0 auto; }
+.board-inner h2 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--navy); text-align: center; margin-bottom: 0.5rem; }
+.board-subtitle { text-align: center; color: var(--olive); font-size: 1rem; margin-bottom: 2.5rem; }
+.board-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+@media (max-width: 768px) { .board-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .board-grid { grid-template-columns: 1fr; } }
+.board-card { background: var(--white); border-radius: 10px; padding: 1.5rem; text-align: center; box-shadow: 0 1px 4px rgba(43,50,16,0.06); }
+.board-card h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 0.25rem; }
+.board-card p { font-size: 0.9rem; color: var(--olive); }
+.board-card .transition-note { font-size: 0.8rem; color: var(--blue); font-style: italic; margin-top: 0.25rem; }
+.exec-director { background: var(--navy); color: var(--white); border-radius: 10px; padding: 1.5rem; text-align: center; grid-column: 1 / -1; }
+.exec-director h3 { color: var(--white); font-size: 1.1rem; margin-bottom: 0.25rem; }
+.exec-director p { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+
+/* BOARD CTA */
+.board-cta { text-align: center; margin-top: 2.5rem; padding: 2rem; background: var(--white); border-radius: 12px; box-shadow: 0 2px 8px rgba(43,50,16,0.06); }
+.board-cta p { font-size: 1rem; color: var(--olive); margin-bottom: 1rem; }
+.board-cta a { display: inline-block; background: var(--bright); color: #fff; padding: 0.7rem 1.6rem; border-radius: 6px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: background 0.2s; }
+.board-cta a:hover { background: #1285c7; }
+
+/* FOOTER */
+.site-footer { background: var(--navy); color: rgba(255,255,255,0.8); padding: 3rem 2rem 2rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+@media (max-width: 768px) { .footer-inner { grid-template-columns: 1fr; text-align: center; } }
+.footer-brand img { height: 48px; margin-bottom: 1rem; }
+.footer-brand p { font-size: 0.85rem; line-height: 1.7; }
+.footer-links h4, .footer-contact h4 { color: #fff; font-size: 0.95rem; margin-bottom: 0.75rem; font-weight: 700; }
+.footer-links a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; padding: 0.2rem 0; transition: color 0.2s; }
+.footer-links a:hover { color: #fff; }
+.footer-contact p { font-size: 0.88rem; line-height: 1.7; }
+.footer-contact a { color: var(--bright); text-decoration: none; }
+.footer-contact a:hover { text-decoration: underline; }
+.footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.12); text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="/"><img src="https://static.wixstatic.com/media/4dd6ee_87f447beca59483fb718f926fc4b90e2~mv2.png" alt="COSPA" class="header-logo"></a>
+  <button class="nav-toggle" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
+  <nav class="header-nav">
+    <a href="/">Home</a>
+    <a href="/our-pools">Our Pools</a>
+    <a href="/about" class="active">About</a>
+    <a href="/faq">FAQ</a>
+    <a href="/contact">Contact</a>
+    <a href="/" class="btn-find-pool">Find Your Pool</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <h1>About COSPA</h1>
+    <p>Managing 8 outdoor pools across Calgary on behalf of the City since the community needed them most.</p>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="content-section">
+  <h2>Who We Are</h2>
+  <p>The Calgary Outdoor Swimming Pools Association (COSPA) manages 8 outdoor pools across Calgary on behalf of the City of Calgary. Our pools are community gathering places where Calgarians of all ages come to swim, learn, and connect every summer.</p>
+  <p>COSPA offers swimming lessons through the Lifesaving Society Swim for Life program, public swim, lane swim, Aquafit, and private rentals. Through our partnership with Vecova, we also provide adaptive aquatics programming at Forest Lawn and South Calgary outdoor pools.</p>
+  <p>Our season runs approximately 80 days each summer, from Father's Day weekend to Labour Day, with select pools offering an extended season into late September.</p>
+</section>
+
+<!-- BOARD OF DIRECTORS -->
+<section class="board-section">
+  <div class="board-inner">
+    <h2>2026 Board of Directors</h2>
+    <p class="board-subtitle">Volunteers who guide COSPA's mission and operations</p>
+    <div class="board-grid">
+      <div class="board-card">
+        <h3>Terry Gilbert</h3>
+        <p>Chair</p>
+        <p class="transition-note">Incoming April 2026</p>
+      </div>
+      <div class="board-card">
+        <h3>Kathe Lemon</h3>
+        <p>Chair</p>
+        <p class="transition-note">Outgoing</p>
+      </div>
+      <div class="board-card">
+        <h3>Joel Finkbeiner</h3>
+        <p>Vice Chair</p>
+      </div>
+      <div class="board-card">
+        <h3>Kathleen Olivotto</h3>
+        <p>Treasurer</p>
+      </div>
+      <div class="board-card">
+        <h3>Jason Sokolosky</h3>
+        <p>Secretary</p>
+      </div>
+      <div class="board-card">
+        <h3>Rita McMillan</h3>
+        <p>Director</p>
+      </div>
+      <div class="board-card">
+        <h3>Sierra Beaulieu</h3>
+        <p>Director</p>
+      </div>
+      <div class="board-card">
+        <h3>Jonathan Smith</h3>
+        <p>Director</p>
+      </div>
+      <div class="exec-director">
+        <h3>Riley Harper</h3>
+        <p>Executive Director</p>
+      </div>
+    </div>
+
+    <!-- Board Application CTA -->
+    <div class="board-cta">
+      <p>Interested in joining the COSPA Board of Directors? We're always looking for community members who are passionate about outdoor swimming in Calgary.</p>
+      <a href="mailto:info@cospa.ca?subject=Board of Directors Application">Email info@cospa.ca to Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://static.wixstatic.com/media/4dd6ee_87f447beca59483fb718f926fc4b90e2~mv2.png" alt="COSPA">
+      <p>Calgary Outdoor Swimming Pools Association manages 8 outdoor pools across Calgary on behalf of the City of Calgary.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="/">Home</a>
+      <a href="/our-pools">Our Pools</a>
+      <a href="/about">About Us</a>
+      <a href="/faq">FAQ</a>
+      <a href="/admission-policies">Admission Policies</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p><a href="mailto:info@cospa.ca">info@cospa.ca</a><br>403-207-5665<br>426-918 16 Avenue NW<br>Calgary, AB T2M 0K3</p>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Calgary Outdoor Swimming Pools Association</div>
+</footer>
+
+</body>
+</html>
